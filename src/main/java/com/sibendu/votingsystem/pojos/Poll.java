@@ -12,14 +12,11 @@ import java.util.List;
 @Entity
 public class Poll {
     @Size(min = 1, max = 4)
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "POLL_ID")
+    @OneToMany(cascade = CascadeType.ALL,
+    fetch = FetchType.EAGER,
+    mappedBy = "poll")
     List<Option> options;
-    @Id @GeneratedValue
+    String question;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
-    @JsonProperty
-    public List<Option> getOptions()    {
-        return options;
-    }
 }

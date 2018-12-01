@@ -19,8 +19,8 @@ public class PollController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @GetMapping("/polls/{poll_id}")
-    public ResponseEntity<Poll> getPoll(@PathVariable Long poll_id) {
-        return new ResponseEntity<>(pollService.getPoll(poll_id), HttpStatus.OK);
+    @GetMapping("/polls/{pollId}")
+    public ResponseEntity<Poll> getPoll(@PathVariable Long pollId) {
+        return new ResponseEntity<>(pollService.getPoll(pollId), HttpStatus.OK);
     }
 }

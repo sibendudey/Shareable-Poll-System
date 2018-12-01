@@ -7,11 +7,12 @@ import javax.persistence.*;
 @Entity
 @Data
 public class Option {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String description;
-//    @ManyToOne
-//    @JoinColumn(name = "POLL_ID")
     long yes;
     long no;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "poll_id", nullable = false)
+    Poll poll;
 }

@@ -14,10 +14,8 @@ public class PollService {
 
     @Autowired
     OptionRepository optionRepository;
+
     public void createPoll(Poll poll) {
-//        for (Option option : poll.getOptions())  {
-//            option.setPoll(poll);
-//        }
         pollRepository.save(poll);
     }
 
