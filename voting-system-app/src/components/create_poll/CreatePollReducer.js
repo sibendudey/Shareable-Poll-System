@@ -8,6 +8,6 @@ export default function createPollReducer(state = initialState, action)   {
         case SHOW_OPTIONS_FORM:
             return {...state, showOptionsForm: true};
         default:
-            return initialState;
+            return state;
     }
 }
