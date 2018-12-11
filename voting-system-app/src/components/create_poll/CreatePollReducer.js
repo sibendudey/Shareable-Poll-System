@@ -1,9 +1,13 @@
+import {SHOW_OPTIONS_FORM} from "./CreatePollActions";
 
 
-
-const initialState = { question: "Hello World?", };
+const initialState = { question: "Put your question down here.........",
+showOptionsForm: false};
 export default function createPollReducer(state = initialState, action)   {
     switch (action.type) {
-        default: return initialState;
+        case SHOW_OPTIONS_FORM:
+            return {...state, showOptionsForm: true};
+        default:
+            return initialState;
     }
 }

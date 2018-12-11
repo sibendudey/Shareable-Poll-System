@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
-import {connect} from 'react-redux';
-class App extends Component {
+import './App.scss';
+import CreatePollForm from './components/create_poll/CreatePollForm';
+
+export default class App extends Component {
   render() {
-    const { createPoll } = this.props;
     return (
       <div className="App">
-        <body>
-        { createPoll.question }
-        </body>
+        <CreatePollForm />
       </div>
     );
   }
 }
 
 
-export default connect((state) => ({
-  createPoll: state.createPoll,
-}))(App);
+

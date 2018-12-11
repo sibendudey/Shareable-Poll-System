@@ -1,0 +1,11 @@
+.form-container {
+  width: 80%;
+  padding-top: 50px;
+  padding-left: 50px;
+  display: flex;
+  flex-flow: column;
+  .create-poll-button {
+    padding-top: 10px;
+    margin-left: auto;
+  }
+}

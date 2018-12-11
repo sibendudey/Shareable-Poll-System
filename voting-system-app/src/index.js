@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styles from 'carbon-components/css/carbon-components.css';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {combineReducers, createStore} from "redux";
+import {combineReducers, createStore, applyMiddleware} from "redux";
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import createPollReducer from "./components/create_poll/CreatePollReducer";
+import createOptionReducer from "./components/create_options/CreateOptionReducer";
 
 const reducers = combineReducers({
   createPoll: createPollReducer,
+  createOption: createOptionReducer,
 });
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunk));
 
 const app = <Provider store={store}>
         <App />
