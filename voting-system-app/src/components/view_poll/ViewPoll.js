@@ -8,8 +8,10 @@ import styles from './viewPoll.scss';
 class ViewPoll extends React.Component{
   
   componentDidMount() {
-    this.props.dispatchFetchPoll(1);
+    const { poll_id } = this.props.match.params;
+    this.props.dispatchFetchPoll(poll_id);
   }
+  
   render()  {
     const { isLoading, poll } = this.props.viewPoll;
     const { dispatchVote } = this.props;
@@ -19,8 +21,8 @@ class ViewPoll extends React.Component{
         <div style={{ display: "flex", flexFlow: "row"}}>{ poll.question }</div>
       </div>
       <div>
-        { (poll.options || []).map((o, index) =>  (<div className={"option-container"}>
-          <div style={{ display: "flex", flexFlow: "row", marginTop: "10px" }}>
+        { (poll.options || []).map((o, index) =>  (<div key={ '' + index} className={"option-container"}>
+          <div  style={{ display: "flex", flexFlow: "row", marginTop: "10px" }}>
             <div>{o.description}</div>
             <div style={{ marginLeft: "auto"}}>
               <Button onClick={ () => dispatchVote(o.id)}>Vote</Button>

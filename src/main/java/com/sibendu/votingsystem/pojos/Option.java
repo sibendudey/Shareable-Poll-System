@@ -14,7 +14,7 @@ public class Option {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     private String description;
-    private long voteCount = 3;
+    private long voteCount;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "poll_id", nullable = false)
     Poll poll;

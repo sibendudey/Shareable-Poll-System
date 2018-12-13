@@ -1,6 +1,3 @@
-import {setPollId, showOptionsForm} from "../create_poll/CreatePollActions";
-
-
 export const SET_POLL = 'SET_POLL';
 export const fetchPoll = (id) => (dispatch) => {
   let httpRequest = new XMLHttpRequest();

@@ -13,7 +13,7 @@ export default class App extends Component {
           <div>
           <Route exact path="/" component={CreatePollForm}/>
           <Route path="/create_poll" component={CreatePollForm} />
-          <Route path="/view_poll" component={ViewPoll} />
+          <Route path="/view_poll/:poll_id" component={ViewPoll} />
           </div>
         </Router>
       </div>

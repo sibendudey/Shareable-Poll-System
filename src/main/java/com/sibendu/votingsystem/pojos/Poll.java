@@ -33,6 +33,11 @@ public class Poll {
             return null;
 
         long total = options.stream().mapToLong(Option::getVoteCount).sum();
-        return options.stream().map(option -> ((double)option.getVoteCount() / total) * 100).collect(Collectors.toList());
+        return options.stream().map(option -> {
+            if (total == 0)
+                return 0.0;
+            else
+                return ((double)option.getVoteCount() / total) * 100;
+        }).collect(Collectors.toList());
     }
 }
