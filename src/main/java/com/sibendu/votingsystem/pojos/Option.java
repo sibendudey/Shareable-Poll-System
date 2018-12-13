@@ -3,6 +3,7 @@ package com.sibendu.votingsystem.pojos;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,9 +13,8 @@ import javax.persistence.*;
 public class Option {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String description;
-    long yes;
-    long no;
+    private String description;
+    private long voteCount = 3;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "poll_id", nullable = false)
     Poll poll;

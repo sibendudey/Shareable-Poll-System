@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -24,5 +25,14 @@ public class Poll {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @JsonProperty("percentage")
+    public List<Double> percentage()  {
+        if (options == null)
+            return null;
+
+        long total = options.stream().mapToLong(Option::getVoteCount).sum();
+        return options.stream().map(option -> ((double)option.getVoteCount() / total) * 100).collect(Collectors.toList());
     }
 }

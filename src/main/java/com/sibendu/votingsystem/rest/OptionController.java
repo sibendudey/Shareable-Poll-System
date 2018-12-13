@@ -7,10 +7,7 @@ import com.sibendu.votingsystem.repository.PollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +33,15 @@ public class OptionController {
 
         optionRepository.saveAll(options);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value="/vote/{voteId}")
+    public ResponseEntity<List<Double>> vote(@PathVariable long voteId)   {
+        Option toVote = optionRepository.findById(voteId).get();
+        toVote.setVoteCount(toVote.getVoteCount() + 1);
+        optionRepository.save(toVote);
+        Poll poll = pollRepository.findById(toVote.getPoll().getId()).get();
+        return ResponseEntity.ok(poll.percentage());
     }
 
     static class PollOptions   {
