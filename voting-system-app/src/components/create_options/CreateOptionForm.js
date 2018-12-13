@@ -22,7 +22,7 @@ class CreateOptionForm extends React.Component{
       return (<React.Fragment>
         { options.map((option, i) =>
           (<div className="option-box">
-            <TextInput className="option-text" id={i} value={option.value} onChange={(ev) => this.onOptionTextChange(ev, i)}/>
+            <TextInput className="option-text" id={'' + i} value={option.description} onChange={(ev) => this.onOptionTextChange(ev, i)}/>
             <Icon className='option-close' name='icon--close--outline' onClick={() => dispatchOnOptionClose(i)}/>
             </div>)) }
         <Button className="add-option-button" onClick={dispatchOnOptionAdd}>Add Option</Button>
@@ -36,4 +36,5 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchOnOptionClose: (index) => dispatch(onOptionClose(index)),
   dispatchOnOptionAdd: () => dispatch(onOptionAdd()),
 })
+
 export default connect((state) => ({createOption: state.createOption}), mapDispatchToProps)(CreateOptionForm);

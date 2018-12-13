@@ -1,5 +1,7 @@
 package com.sibendu.votingsystem.pojos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -8,8 +10,8 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @Entity
+@Data
 public class Poll {
     @Size(min = 1, max = 4)
     @OneToMany(cascade = CascadeType.ALL,
@@ -19,4 +21,12 @@ public class Poll {
     String question;
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    public List<Option> getOptions()    {
+        return options;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
