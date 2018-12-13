@@ -2,6 +2,7 @@
   width: 50%;
   padding-left: 50px;
   padding-top: 50px;
-  display: flex;
-  flex-flow: column;
+  .question-container {
+    margin-bottom: 10px;
+  }
 }

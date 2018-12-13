@@ -5,7 +5,6 @@ import com.sibendu.votingsystem.pojos.Poll;
 import com.sibendu.votingsystem.repository.OptionRepository;
 import com.sibendu.votingsystem.repository.PollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

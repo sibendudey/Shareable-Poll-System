@@ -51,4 +51,5 @@ export const createOptions = () => (dispatch, getState) => {
     }
   };
   httpRequest.send(JSON.stringify({ id: createPoll.id, options: createOption.options }));
-}
+};
+
