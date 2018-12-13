@@ -43,7 +43,7 @@ export const createOptions = () => (dispatch, getState) => {
   let httpRequest = new XMLHttpRequest();
   httpRequest.responseType = "json";
   const { createPoll, createOption } = getState();
-  httpRequest.open("POST", 'http://localhost:8080/voting-system/api/v1/options/create');
+  httpRequest.open("POST", 'http://localhost:8080/voting-system/web-api/v1/create-options/');
   httpRequest.setRequestHeader("content-type", "application/json");
   httpRequest.onreadystatechange = () => {
     if (httpRequest.status === 201 && httpRequest.readyState === 4)  {

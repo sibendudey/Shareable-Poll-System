@@ -21,10 +21,6 @@ public class Poll {
     String question;
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    public List<Option> getOptions()    {
-        return options;
-    }
-
     @Override
     public String toString() {
         return super.toString();

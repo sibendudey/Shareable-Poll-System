@@ -9,10 +9,12 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createPollReducer from "./components/create_poll/CreatePollReducer";
 import createOptionReducer from "./components/create_options/CreateOptionReducer";
+import viewPollReducer from "./components/view_poll/ViewPollReducer";
 
 const reducers = combineReducers({
   createPoll: createPollReducer,
   createOption: createOptionReducer,
+  viewPoll: viewPollReducer,
 });
 const store = createStore(reducers, applyMiddleware(thunk));
 

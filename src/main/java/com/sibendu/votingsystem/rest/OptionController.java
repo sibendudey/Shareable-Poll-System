@@ -10,14 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.ws.Response;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RepositoryRestController
+@RestController
+@RequestMapping(value = "/voting-system/web-api/v1/")
 public class OptionController {
     private OptionRepository optionRepository;
     private PollRepository pollRepository;
@@ -27,7 +26,7 @@ public class OptionController {
         this.pollRepository = pollRepository;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/options/create")
+    @RequestMapping(method = RequestMethod.POST, value = "/create-options")
     public ResponseEntity<Option[]> saveOptions(@RequestBody PollOptions poll)    {
         Poll p = pollRepository.findById(poll.id).get();
         List<Option> options = poll.options.stream().map((option) -> {
