@@ -1,8 +1,7 @@
 package com.sibendu.votingsystem.services;
 
-import com.sibendu.votingsystem.pojos.Option;
 import com.sibendu.votingsystem.pojos.Poll;
-import com.sibendu.votingsystem.repository.OptionRepository;
+import com.sibendu.votingsystem.repository.PollOptionRepository;
 import com.sibendu.votingsystem.repository.PollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ public class PollService {
     PollRepository pollRepository;
 
     @Autowired
-    OptionRepository optionRepository;
+    PollOptionRepository pollOptionRepository;
 
     public void createPoll(Poll poll) {
         pollRepository.save(poll);

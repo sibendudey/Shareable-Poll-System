@@ -5,7 +5,7 @@ export const INITIAL_STATE = {
   isLoading: true,
   poll: {
     question: '',
-    options: [],
+    pollOptions: [],
   }
 };
 

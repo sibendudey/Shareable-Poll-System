@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Option {
+public class PollOption {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     private String description;
@@ -18,10 +18,9 @@ public class Option {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "poll_id", nullable = false)
     Poll poll;
-    public Option() {
+    public PollOption() {
 
     }
-
     public void setPoll(Poll poll)  {
         this.poll = poll;
     }

@@ -21,7 +21,7 @@ class ViewPoll extends React.Component{
         <div style={{ display: "flex", flexFlow: "row"}}>{ poll.question }</div>
       </div>
       <div>
-        { (poll.options || []).map((o, index) =>  (<div key={ '' + index} className={"option-container"}>
+        { (poll.pollOptions || []).map((o, index) =>  (<div key={ '' + index} className={"option-container"}>
           <div  style={{ display: "flex", flexFlow: "row", marginTop: "10px" }}>
             <div>{o.description}</div>
             <div style={{ marginLeft: "auto"}}>
