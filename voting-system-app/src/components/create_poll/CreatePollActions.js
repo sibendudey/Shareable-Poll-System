@@ -1,6 +1,7 @@
 import {resetOptionForm} from "../create_options/CreateOptionAction";
+import {HOST_ADDRESS, HOST_PORT} from "../../HostAddress";
 
-
+const basePath = 'http://' + HOST_ADDRESS + ':' + HOST_PORT;
 export const SHOW_OPTIONS_FORM = 'SHOW_OPTIONS_FORM';
 export const showOptionsForm = () => (dispatch) => {
   dispatch({
@@ -37,7 +38,7 @@ export const showLink = () => (dispatch) => {
 export const createPoll = (poll) => (dispatch) => {
   let httpRequest = new XMLHttpRequest();
   httpRequest.responseType = "json";
-  httpRequest.open("POST", 'http://localhost:8080/voting-system/api/v1/polls');
+  httpRequest.open("POST", basePath + '/voting-system/api/v1/polls');
   httpRequest.setRequestHeader("content-type", "application/json");
   httpRequest.onreadystatechange = () => {
     if (httpRequest.status === 201 && httpRequest.readyState === 4)  {
@@ -52,7 +53,7 @@ export const createOptions = () => (dispatch, getState) => {
   let httpRequest = new XMLHttpRequest();
   httpRequest.responseType = "json";
   const { createPoll, createOption } = getState();
-  httpRequest.open("POST", 'http://localhost:8080/voting-system/web-api/v1/create-options/');
+  httpRequest.open("POST", basePath + '/voting-system/web-api/v1/create-options/');
   httpRequest.setRequestHeader("content-type", "application/json");
   httpRequest.onreadystatechange = () => {
     if (httpRequest.status === 200 && httpRequest.readyState === 4)  {
