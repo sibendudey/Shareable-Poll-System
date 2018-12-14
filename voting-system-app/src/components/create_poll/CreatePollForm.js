@@ -15,7 +15,6 @@ const CreatePollForm = (props) => {
         secondaryButtonText="Dismiss"
         onRequestSubmit={dispatchResetForm}
         onRequestClose={dispatchResetForm}>
-        
         Shareable Link: { 'localhost:3000/view_poll/' + id}
       </Modal> }
     <TextArea labelText='Question' value={question} onChange={dispatchOnQuestionChange}/>
