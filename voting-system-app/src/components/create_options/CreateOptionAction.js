@@ -16,6 +16,13 @@ export const onOptionClose = (id) => (dispatch) => {
   })
 };
 
+export const RESET_OPTION_FORM = 'RESET_OPTION_FORM';
+export const resetOptionForm = () => (dispatch) => {
+  dispatch({
+    type: RESET_OPTION_FORM,
+  });
+};
+
 
 export const OPTION_ADD = 'OPTION_ADD';
 export const onOptionAdd = () => (dispatch) => {

@@ -1,4 +1,4 @@
-import {OPTION_ADD, OPTION_CLOSE, OPTION_TEXT_CHANGE} from "./CreateOptionAction";
+import {OPTION_ADD, OPTION_CLOSE, OPTION_TEXT_CHANGE, RESET_OPTION_FORM} from "./CreateOptionAction";
 
 
 const INITIAL_STATE = {
@@ -10,13 +10,17 @@ const INITIAL_STATE = {
 export default function createOptionReducer(state = INITIAL_STATE, action)  {
   switch(action.type) {
     case OPTION_TEXT_CHANGE:
-      state.options[action.id].description = action.text;
-      return {...state};
+      let newOptions = [...state.options];
+      newOptions[action.id] = {...newOptions[action.id], description: action.text};
+      return {...state, options: newOptions};
     case OPTION_CLOSE:
-      state.options.splice(action.id, 1);
-      return {...state}
+      newOptions = [...state.options];
+      newOptions.splice(action.id, 1);
+      return {...state, options: newOptions};
     case OPTION_ADD:
-      return {...state, options: [...state.options, { description: ''}]}
+      return {...state, options: [...state.options, { description: ''}]};
+    case RESET_OPTION_FORM:
+      return INITIAL_STATE;
     default: return state;
   }
 }

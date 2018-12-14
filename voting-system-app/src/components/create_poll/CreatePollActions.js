@@ -1,3 +1,4 @@
+import {resetOptionForm} from "../create_options/CreateOptionAction";
 
 
 export const SHOW_OPTIONS_FORM = 'SHOW_OPTIONS_FORM';
@@ -5,7 +6,7 @@ export const showOptionsForm = () => (dispatch) => {
   dispatch({
     type: SHOW_OPTIONS_FORM,
   });
-}
+};
 
 
 export const SET_POLL_ID = 'SET_POLL_ID';
@@ -14,7 +15,7 @@ export const setPollId = (id) => (dispatch) => {
     type: SET_POLL_ID,
     id,
   })
-}
+};
 
 
 export const QUESTION_CHANGE = 'QUESTION_CHANGE';
@@ -22,6 +23,14 @@ export const onQuestionChange = ({ target }) => (dispatch) => {
   dispatch({
     type: QUESTION_CHANGE,
     question: target.value,
+  });
+};
+
+
+export const SHOW_LINK = 'SHOW_LINK';
+export const showLink = () => (dispatch) => {
+  dispatch({
+    type: SHOW_LINK,
   });
 };
 
@@ -46,10 +55,19 @@ export const createOptions = () => (dispatch, getState) => {
   httpRequest.open("POST", 'http://localhost:8080/voting-system/web-api/v1/create-options/');
   httpRequest.setRequestHeader("content-type", "application/json");
   httpRequest.onreadystatechange = () => {
-    if (httpRequest.status === 201 && httpRequest.readyState === 4)  {
-      console.log(httpRequest.response);
+    if (httpRequest.status === 200 && httpRequest.readyState === 4)  {
+      dispatch(showLink());
     }
   };
   httpRequest.send(JSON.stringify({ id: createPoll.id, options: createOption.options }));
+};
+
+
+export const RESET_POLL_FORM = 'RESET_POLL_FORM';
+export const resetPollForm = () => (dispatch) => {
+  dispatch({
+    type: RESET_POLL_FORM,
+  });
+  dispatch(resetOptionForm());
 };
 
