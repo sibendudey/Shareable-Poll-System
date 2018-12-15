@@ -2,7 +2,7 @@ import {QUESTION_CHANGE, RESET_POLL_FORM, SET_POLL_ID, SHOW_LINK, SHOW_OPTIONS_F
 
 
 const initialState = {
-  question: "Put your question down here.........",
+  question: "",
   showOptionsForm: false,
   showModal: false,
 };

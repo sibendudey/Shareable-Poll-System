@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {TextArea, Button, Modal} from "carbon-components-react";
+import {Modal} from "carbon-components-react";
 import './CreatePollForm.scss'
 import {createOptions, createPoll, onQuestionChange, resetPollForm} from "./CreatePollActions";
 import CreateOptionForm from "../create_options/CreateOptionForm";
+import { TextField, Button as MaterialButton} from '@material-ui/core';
 import {HOST_ADDRESS} from "../../HostAddress";
 
 const CreatePollForm = (props) => {
@@ -18,18 +19,18 @@ const CreatePollForm = (props) => {
         onRequestClose={dispatchResetForm}>
         Shareable Link: { HOST_ADDRESS + '/view_poll/' + id}
       </Modal> }
-    <TextArea labelText='Question' value={question} onChange={dispatchOnQuestionChange}/>
-    <div className="create-poll-button">
-      <Button disabled={showOptionsForm} onClick={() => dispatchCreatePoll({ question })}>
-        { "Create a Poll" }
-      </Button>
-    </div>
+      <TextField helperText='Put your poll question here' label='Question' id='question' type='text' value={question} onChange={dispatchOnQuestionChange}/>
+      <div className="create-poll-button">
+      <MaterialButton variant="contained" onClick={() => dispatchCreatePoll({ question })}>
+        Create Poll
+      </MaterialButton>
+      </div>
     { showOptionsForm &&
       <CreateOptionForm/>}
       {
         showOptionsForm &&
         <div className="create-link-button">
-          <Button onClick={dispatchCreateOption}>Get Link</Button>
+          <MaterialButton variant="contained" onClick={dispatchCreateOption}>Get Link</MaterialButton>
         </div>
       }
   </div>);

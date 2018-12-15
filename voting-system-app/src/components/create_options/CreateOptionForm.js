@@ -1,5 +1,6 @@
 import React from 'react';
-import {TextInput, Button, Icon} from "carbon-components-react";
+import {Icon} from "carbon-components-react";
+import { TextField, Button as MaterialButton} from "@material-ui/core";
 import { connect } from 'react-redux';
 import './createOptionForm.scss';
 import {onOptionAdd, onOptionClose, onOptionTextChange} from "./CreateOptionAction";
@@ -22,10 +23,12 @@ class CreateOptionForm extends React.Component{
       return (<React.Fragment>
         { options.map((option, i) =>
           (<div className="option-box">
-            <TextInput className="option-text" id={'' + i} value={option.description} onChange={(ev) => this.onOptionTextChange(ev, i)}/>
+            <TextField helperText='Put your option here' className="option-text" id={'' + i} value={option.description} onChange={(ev) => this.onOptionTextChange(ev, i)}/>
             <Icon className='option-close' name='icon--close--outline' onClick={() => dispatchOnOptionClose(i)}/>
             </div>)) }
-        <Button className="add-option-button" onClick={dispatchOnOptionAdd}>Add Option</Button>
+            <div className="add-option-button">
+              <MaterialButton variant="contained" className="add-option-button" onClick={dispatchOnOptionAdd}>Add Option</MaterialButton>
+            </div>
       </React.Fragment>);
     }
 }

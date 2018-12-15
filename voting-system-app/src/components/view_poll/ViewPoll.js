@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Loading, Button} from "carbon-components-react";
+import {Loading} from "carbon-components-react";
+import { Button as MaterialButton} from '@material-ui/core';
 import {fetchPoll, vote} from "./ViewPollActions";
 import { Line } from 'rc-progress';
 import styles from './viewPoll.scss';
@@ -25,7 +26,7 @@ class ViewPoll extends React.Component{
           <div  style={{ display: "flex", flexFlow: "row", marginTop: "10px" }}>
             <div>{o.description}</div>
             <div style={{ marginLeft: "auto"}}>
-              <Button onClick={ () => dispatchVote(o.id)}>Vote</Button>
+              <MaterialButton variant="contained" onClick={ () => dispatchVote(o.id)}>Vote</MaterialButton>
             </div>
           </div>
           <div><Line strokeWidth="4" percent={poll.percentage[index]} /></div>
