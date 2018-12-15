@@ -10,11 +10,13 @@ import thunk from 'redux-thunk';
 import createPollReducer from "./components/create_poll/CreatePollReducer";
 import createOptionReducer from "./components/create_options/CreateOptionReducer";
 import viewPollReducer from "./components/view_poll/ViewPollReducer";
+import {navigationBarReducer} from "./components/navigation_bar/NavigationBarReducer";
 
 const reducers = combineReducers({
   createPoll: createPollReducer,
   createOption: createOptionReducer,
   viewPoll: viewPollReducer,
+  navigationBar: navigationBarReducer,
 });
 const store = createStore(reducers, applyMiddleware(thunk));
 
