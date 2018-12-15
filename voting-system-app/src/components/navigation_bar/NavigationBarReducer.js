@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   },
   {
     tabName: 'Create Poll',
-    tabUrl: 'create_poll',
+    tabUrl: '/create_poll',
   },
   {
     tabName: 'View Poll',

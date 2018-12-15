@@ -10,13 +10,13 @@ import {updateNavBarSelection} from "./NavigationBarActions";
 import {connect} from "react-redux";
 
 export const NavigationBar = (props) => {
-    const { dispatchUpdateSelectedIndex, history} = props;
+    const { dispatchUpdateSelectedIndex, history, location} = props;
     const { tabs, selectedValue} = props.navBar;
     return (
       <div><AppBar position='relative'>
         <Toolbar>
-          <Tabs value={selectedValue} onChange={(event, value) => {
-            dispatchUpdateSelectedIndex(event, value);
+          <Tabs value={(tabs.find(tab => tab.tabUrl === location.pathname) || {}).tabName} onChange={(event, value) => {
+            // dispatchUpdateSelectedIndex(event, value);
             history.push(tabs.find(tab => tab.tabName === value).tabUrl)
             }}>
             {
