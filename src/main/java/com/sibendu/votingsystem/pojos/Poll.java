@@ -37,4 +37,12 @@ public class Poll {
                 return ((double)option.getVoteCount() / total) * 100;
         }).collect(Collectors.toList());
     }
+
+    @JsonProperty("totalVotes")
+    public long getTotalVotes() {
+        if (pollOptions == null)
+            return 0;
+
+        return pollOptions.stream().mapToLong(option -> option.getVoteCount()).sum();
+    }
 }

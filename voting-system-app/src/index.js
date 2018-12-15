@@ -11,12 +11,14 @@ import createPollReducer from "./components/create_poll/CreatePollReducer";
 import createOptionReducer from "./components/create_options/CreateOptionReducer";
 import viewPollReducer from "./components/view_poll/ViewPollReducer";
 import {navigationBarReducer} from "./components/navigation_bar/NavigationBarReducer";
+import {viewAllPollsReducer} from "./components/view_all_polls/ViewAllPollsReducer";
 
 const reducers = combineReducers({
   createPoll: createPollReducer,
   createOption: createOptionReducer,
   viewPoll: viewPollReducer,
   navigationBar: navigationBarReducer,
+  viewAllPolls: viewAllPollsReducer,
 });
 const store = createStore(reducers, applyMiddleware(thunk));
 

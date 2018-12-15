@@ -1,6 +1,5 @@
 import {UPDATE_SELECTED} from "./NavigationBarActions";
 
-
 const INITIAL_STATE = {
   tabs: [
   {
@@ -12,8 +11,8 @@ const INITIAL_STATE = {
     tabUrl: '/create_poll',
   },
   {
-    tabName: 'View Poll',
-    tabUrl: '/view_poll',
+    tabName: 'View Polls',
+    tabUrl: '/view_polls',
   }
 ],
   selectedValue: 'Home',
