@@ -43,6 +43,6 @@ public class Poll {
         if (pollOptions == null)
             return 0;
 
-        return pollOptions.stream().mapToLong(option -> option.getVoteCount()).sum();
+        return pollOptions.stream().mapToLong(PollOption::getVoteCount).sum();
     }
 }

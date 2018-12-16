@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   numOfOptions: 1,
   options: [
     { description: '' }
-  ]
+  ],
 };
 export default function createOptionReducer(state = INITIAL_STATE, action)  {
   switch(action.type) {
