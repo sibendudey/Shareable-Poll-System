@@ -6,13 +6,14 @@ const INITIAL_STATE = {
   options: [
     { description: '' }
   ],
+  isValid: false,
 };
 export default function createOptionReducer(state = INITIAL_STATE, action)  {
   switch(action.type) {
     case OPTION_TEXT_CHANGE:
       let newOptions = [...state.options];
       newOptions[action.id] = {...newOptions[action.id], description: action.text};
-      return {...state, options: newOptions};
+      return {...state, options: newOptions, isValid: isValid(newOptions)};
     case OPTION_CLOSE:
       newOptions = [...state.options];
       newOptions.splice(action.id, 1);
@@ -23,4 +24,9 @@ export default function createOptionReducer(state = INITIAL_STATE, action)  {
       return INITIAL_STATE;
     default: return state;
   }
+}
+
+const isValid = (options) => {
+  const value = options.reduce((acc, option) => {return acc + ( option.description === '' ? 0 : 1) }, 0);
+  return value >= 2;
 }

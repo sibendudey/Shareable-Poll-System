@@ -38,6 +38,6 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchOnOptionTextChange: (text, index) => dispatch(onOptionTextChange(text, index)),
   dispatchOnOptionClose: (index) => dispatch(onOptionClose(index)),
   dispatchOnOptionAdd: () => dispatch(onOptionAdd()),
-})
+});
 
 export default connect((state) => ({createOption: state.createOption}), mapDispatchToProps)(CreateOptionForm);

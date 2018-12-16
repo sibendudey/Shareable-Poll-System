@@ -53,6 +53,7 @@ export const createOptions = () => (dispatch, getState) => {
   let httpRequest = new XMLHttpRequest();
   httpRequest.responseType = "json";
   const { createPoll, createOption } = getState();
+  const options = createOption.options.filter(option => option.description.trim() !== '');
   httpRequest.open("POST", basePath + '/voting-system/web-api/v1/create-options/');
   httpRequest.setRequestHeader("content-type", "application/json");
   httpRequest.onreadystatechange = () => {
@@ -60,7 +61,7 @@ export const createOptions = () => (dispatch, getState) => {
       dispatch(showLink());
     }
   };
-  httpRequest.send(JSON.stringify({ id: createPoll.id, options: createOption.options }));
+  httpRequest.send(JSON.stringify({ id: createPoll.id, options }));
 };
 
 

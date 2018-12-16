@@ -10,7 +10,7 @@ import {HOST_ADDRESS} from "../../HostAddress";
 const CreatePollForm = (props) => {
   const {question, showOptionsForm, showModal, id} = props.createPoll;
   const {options} = props.createOption;
-  const disableGetLinkButton = options.length <= 1 || options[1].description === '';
+  const disableGetLinkButton = !props.createOption.isValid;
   const {dispatchCreatePoll, dispatchCreateOption, dispatchOnQuestionChange, dispatchResetForm} = props;
   return (<div className="form-container">
     {<Modal
