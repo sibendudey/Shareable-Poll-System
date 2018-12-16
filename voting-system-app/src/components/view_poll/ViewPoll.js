@@ -19,7 +19,7 @@ class ViewPoll extends React.Component{
     return (<div className="view-poll-container">
       { isLoading && <Loading />}
       <div className="question-container">
-        <div style={{ display: "flex", flexFlow: "row"}}>{ poll.question }</div>
+        <div style={{ display: "flex", flexFlow: "row"}}><h3>{ poll.question }</h3></div>
       </div>
       <div>
         { (poll.pollOptions || []).map((o, index) =>  (<div key={ '' + index} className={"option-container"}>
