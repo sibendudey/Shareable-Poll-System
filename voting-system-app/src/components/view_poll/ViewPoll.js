@@ -35,17 +35,16 @@ class ViewPoll extends React.Component {
     return (<div className="view-poll-container">
       {isLoading && <Loading/>}
       <div className="question-container">
-        <div style={{display: "flex", flexFlow: "row"}}><h3>{poll.question}</h3></div>
+        <div><h4>{poll.question}</h4></div>
       </div>
       <div>
-        {(poll.pollOptions || []).map((o, index) => (<div key={'' + index} className={"option-container"}>
-          <div style={{display: "flex", flexFlow: "row", marginTop: "10px"}}>
-            <div>{o.description}</div>
+        {(poll.pollOptions || []).map((o, index) => (<div key={'' + index}>
+          <div className={"option-container"} style={{}}>
+            <div><h5>{o.description}</h5></div>
             <div style={{marginLeft: "auto"}}>
               <MaterialButton variant="contained" onClick={() => dispatchVote(o.id)}>Vote</MaterialButton>
             </div>
           </div>
-          {/*<div><Line strokeWidth="4" percent={poll.percentage[index]}/></div>*/}
           <div><Progress percent={Math.round(poll.percentage[index])}/></div>
         </div>))}
       </div>

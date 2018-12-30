@@ -1,8 +1,12 @@
 .view-poll-container  {
-  width: 50%;
-  padding-left: 50px;
-  padding-top: 50px;
+  width: 70%;
+  margin: 50px auto;
   .question-container {
     margin-bottom: 25px;
+  }
+  .option-container {
+    display: flex;
+    flexFlow: row;
+    margin: 10px 0 10px 0;
   }
 }
