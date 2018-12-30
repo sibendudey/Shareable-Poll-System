@@ -37,3 +37,12 @@ export const vote = (id) => (dispatch) => {
   };
   httpRequest.send();
 };
+
+export const subscribeToPoll = (id, client) => (dispatch) => {
+    client.subscribe('/polls/update_poll/' + id, function (resp) {
+      dispatch({
+        type: SET_POLL_PERCENTAGE,
+        percentage: JSON.parse(resp.body),
+      });
+    });
+};

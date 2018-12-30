@@ -5,6 +5,8 @@ import com.sibendu.votingsystem.pojos.Poll;
 import com.sibendu.votingsystem.repository.PollOptionRepository;
 import com.sibendu.votingsystem.repository.PollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.rest.core.event.AfterSaveEvent;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,9 @@ import java.util.stream.Collectors;
 public class OptionController {
     private PollOptionRepository pollOptionRepository;
     private PollRepository pollRepository;
+    @Autowired
+    private ApplicationEventPublisher publisher;
+
     @Autowired
     public OptionController(PollOptionRepository pollOptionRepository, PollRepository pollRepository)  {
         this.pollOptionRepository = pollOptionRepository;
@@ -39,7 +44,8 @@ public class OptionController {
         PollOption toVote = pollOptionRepository.findById(voteId).get();
         toVote.setVoteCount(toVote.getVoteCount() + 1);
         pollOptionRepository.save(toVote);
-        Poll poll = pollRepository.findById(toVote.getPoll().getId()).get();
+        Poll poll = toVote.getPoll();
+        publisher.publishEvent(new AfterSaveEvent(toVote));
         return ResponseEntity.ok(poll.percentage());
     }
 

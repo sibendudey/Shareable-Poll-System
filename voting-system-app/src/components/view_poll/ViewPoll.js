@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Loading} from "carbon-components-react";
 import { Button as MaterialButton} from '@material-ui/core';
-import {fetchPoll, vote} from "./ViewPollActions";
+import {fetchPoll, subscribeToPoll, vote} from "./ViewPollActions";
 import { Line } from 'rc-progress';
 import styles from './viewPoll.scss';
 
@@ -10,7 +10,9 @@ class ViewPoll extends React.Component{
   
   componentDidMount() {
     const { poll_id } = this.props.match.params;
+    const { client } = this.props.webSocket;
     this.props.dispatchFetchPoll(poll_id);
+    this.props.dispatchSubscribeToPoll(poll_id, client);
   }
   
   render()  {
@@ -38,12 +40,14 @@ class ViewPoll extends React.Component{
 
 export const mapStateToProps = (state) => ({
   viewPoll: state.viewPoll,
+  webSocket: state.webSocket,
 });
 
 
 export const mapDispatchToProps = (dispatch) => ({
   dispatchFetchPoll: (id) => dispatch(fetchPoll(id)),
   dispatchVote: (id) => dispatch(vote(id)),
+  dispatchSubscribeToPoll: (id, client) => dispatch(subscribeToPoll(id, client))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewPoll);
