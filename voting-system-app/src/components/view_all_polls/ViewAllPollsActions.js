@@ -1,7 +1,4 @@
 import {basePath} from "../../HostAddress";
-import SockJS from "sockjs-client";
-import {Stomp} from "stompjs/lib/stomp";
-import {setWebSocketClient} from "../../actions/WebSocketActions";
 
 export const FETCH_ALL_POLLS =  'FETCH_ALL_POLLS';
 export const fetchAllPolls = () => (dispatch) => {
@@ -14,13 +11,6 @@ export const fetchAllPolls = () => (dispatch) => {
       dispatch({
         type: FETCH_ALL_POLLS,
         polls: httpRequest.response._embedded.polls,
-      });
-      // Configure the client, this only needs to be done once.
-      
-      const socket = new SockJS( basePath + '/pollsocket');
-      let stompClient = Stomp.over(socket);
-      stompClient.connect({}, function (frame) {
-        dispatch(setWebSocketClient(stompClient));
       });
     }
   };

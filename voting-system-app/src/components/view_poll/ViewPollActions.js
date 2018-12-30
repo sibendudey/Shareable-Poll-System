@@ -38,11 +38,26 @@ export const vote = (id) => (dispatch) => {
   httpRequest.send();
 };
 
+export const SET_POLL_UPDATE_SUBSCRIBE = 'SET_POLL_UPDATE_SUBSCRIBE';
 export const subscribeToPoll = (id, client) => (dispatch) => {
-    client.subscribe('/polls/update_poll/' + id, function (resp) {
+    const subscription = client.subscribe('/polls/update_poll/' + id, function (resp) {
       dispatch({
         type: SET_POLL_PERCENTAGE,
         percentage: JSON.parse(resp.body),
       });
     });
+    
+    dispatch({
+      type: SET_POLL_UPDATE_SUBSCRIBE,
+      subscription,
+    });
+};
+
+export const RESET_POLL = 'RESET_POLL';
+
+export const resetPoll = (subscription) => (dispatch) => {
+  subscription.unsubscribe();
+  dispatch({
+    type: RESET_POLL,
+  });
 };
