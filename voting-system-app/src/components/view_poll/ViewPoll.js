@@ -5,6 +5,8 @@ import {Button as MaterialButton} from '@material-ui/core';
 import {fetchPoll, resetPoll, subscribeToPoll, vote} from "./ViewPollActions";
 import {Line} from 'rc-progress';
 import styles from './viewPoll.scss';
+import { Progress } from 'react-sweet-progress';
+import "react-sweet-progress/lib/style.css";
 
 class ViewPoll extends React.Component {
   componentDidMount() {
@@ -15,13 +17,13 @@ class ViewPoll extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const {poll_id} = this.props.match.params;
     const {client} = this.props.webSocket;
-    const { pollUpdateSubscribed } = this.props.viewPoll;
+    const {pollUpdateSubscribed} = this.props.viewPoll;
     if (client && !pollUpdateSubscribed)
       this.props.dispatchSubscribeToPoll(poll_id, client);
   }
   
   componentWillUnmount() {
-    const { subscription } = this.props.viewPoll;
+    const {subscription} = this.props.viewPoll;
     if (subscription)
       this.props.dispatchResetPoll(subscription);
   }
@@ -43,7 +45,8 @@ class ViewPoll extends React.Component {
               <MaterialButton variant="contained" onClick={() => dispatchVote(o.id)}>Vote</MaterialButton>
             </div>
           </div>
-          <div><Line strokeWidth="4" percent={poll.percentage[index]}/></div>
+          {/*<div><Line strokeWidth="4" percent={poll.percentage[index]}/></div>*/}
+          <div><Progress percent={Math.round(poll.percentage[index])}/></div>
         </div>))}
       </div>
     </div>);
