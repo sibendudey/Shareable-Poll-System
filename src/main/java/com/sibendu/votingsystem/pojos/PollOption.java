@@ -15,7 +15,7 @@ public class PollOption {
     long id;
     private String description;
     private long voteCount;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "poll_id", nullable = false)
     Poll poll;
     public PollOption() {

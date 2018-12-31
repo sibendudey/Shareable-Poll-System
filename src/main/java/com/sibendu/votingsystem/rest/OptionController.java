@@ -40,13 +40,12 @@ public class OptionController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/vote/{voteId}")
-    public ResponseEntity<List<Double>> vote(@PathVariable long voteId)   {
+    public ResponseEntity<Poll> vote(@PathVariable long voteId)   {
         PollOption toVote = pollOptionRepository.findById(voteId).get();
         toVote.setVoteCount(toVote.getVoteCount() + 1);
         pollOptionRepository.save(toVote);
-        Poll poll = toVote.getPoll();
         publisher.publishEvent(new AfterSaveEvent(toVote));
-        return ResponseEntity.ok(poll.percentage());
+        return ResponseEntity.ok(toVote.getPoll());
     }
 
     static class PollOptions   {

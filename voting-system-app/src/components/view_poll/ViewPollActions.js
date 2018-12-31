@@ -5,7 +5,6 @@ export const SET_POLL = 'SET_POLL';
 export const fetchPoll = (id) => (dispatch) => {
   let httpRequest = new XMLHttpRequest();
   httpRequest.responseType = "json";
-  
   httpRequest.open("GET", basePath + '/voting-system/api/v1/polls/' + id);
   httpRequest.setRequestHeader("content-type", "application/json");
   httpRequest.onreadystatechange = () => {
@@ -30,8 +29,8 @@ export const vote = (id) => (dispatch) => {
   httpRequest.onreadystatechange = () => {
     if (httpRequest.status === 200 && httpRequest.readyState === 4)  {
       dispatch({
-        type: SET_POLL_PERCENTAGE,
-        percentage: httpRequest.response,
+        type: SET_POLL,
+        poll: httpRequest.response,
       });
     }
   };
@@ -42,8 +41,8 @@ export const SET_POLL_UPDATE_SUBSCRIBE = 'SET_POLL_UPDATE_SUBSCRIBE';
 export const subscribeToPoll = (id, client) => (dispatch) => {
     const subscription = client.subscribe('/polls/update_poll/' + id, function (resp) {
       dispatch({
-        type: SET_POLL_PERCENTAGE,
-        percentage: JSON.parse(resp.body),
+        type: SET_POLL,
+        poll: JSON.parse(resp.body),
       });
     });
     

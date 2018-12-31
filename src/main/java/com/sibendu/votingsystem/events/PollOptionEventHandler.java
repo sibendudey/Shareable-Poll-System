@@ -1,5 +1,6 @@
 package com.sibendu.votingsystem.events;
 
+import com.sibendu.votingsystem.pojos.Poll;
 import com.sibendu.votingsystem.pojos.PollOption;
 import com.sibendu.votingsystem.services.PollService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class PollOptionEventHandler {
 
     @HandleAfterSave
     public void handleAfterVote(PollOption pollOption) {
-        this.webSocket.convertAndSend(MESSAGE_PREFIX + "/update_poll/" + pollOption.getPoll().getId(),
-                pollService.pollPercentage(pollOption));
+        Poll poll = pollService.getPoll(pollOption.getPoll().getId());
+        this.webSocket.convertAndSend(MESSAGE_PREFIX + "/update_poll/" + pollOption.getPoll().getId(), poll);
     }
 }

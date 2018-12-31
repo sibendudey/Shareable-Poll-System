@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {Loading} from "carbon-components-react";
 import {Button as MaterialButton} from '@material-ui/core';
 import {fetchPoll, resetPoll, subscribeToPoll, vote} from "./ViewPollActions";
-import {Line} from 'rc-progress';
 import styles from './viewPoll.scss';
-import { Progress } from 'react-sweet-progress';
+import {Progress} from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
+import BarChart from '@material-ui/icons/BarChart';
 
 class ViewPoll extends React.Component {
   componentDidMount() {
@@ -47,6 +47,9 @@ class ViewPoll extends React.Component {
           </div>
           <div><Progress percent={Math.round(poll.percentage[index])}/></div>
         </div>))}
+      </div>
+      <div className="votes-container">
+        <div><BarChart /></div><div style={{ marginTop: "5px"}}>Total votes: {poll.totalVotes}</div>
       </div>
     </div>);
   }
