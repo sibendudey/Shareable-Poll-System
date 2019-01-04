@@ -10,6 +10,7 @@ import ViewAllPolls from "./components/view_all_polls/ViewAllPolls";
 import {connect} from "react-redux";
 import {fetchAllPolls} from "./components/view_all_polls/ViewAllPollsActions";
 import {connectToWebSocket} from "./actions/WebSocketActions";
+import RegisterForm from "./components/register_form/RegisterForm";
 
 export class App extends Component {
   componentDidMount() {
@@ -23,7 +24,7 @@ export class App extends Component {
           <div>
             <NavigationBar/>
             <div>
-              <Route exact path="/" component={CreatePollForm}/>
+              <Route exact path="/" component={RegisterForm}/>
               <Route path="/create_poll" component={CreatePollForm}/>
               <Route path="/view_polls" component={ViewAllPolls}/>
               <Route path="/view_poll/:poll_id" component={ViewPoll}/>

@@ -13,6 +13,7 @@ import viewPollReducer from "./components/view_poll/ViewPollReducer";
 import {navigationBarReducer} from "./components/navigation_bar/NavigationBarReducer";
 import {viewAllPollsReducer} from "./components/view_all_polls/ViewAllPollsReducer";
 import webSocketReducer from "./reducers/WebSocketReducer";
+import {registrationFormReducer} from "./components/register_form/RegistrationFormReducers";
 
 const reducers = combineReducers({
   createPoll: createPollReducer,
@@ -21,6 +22,7 @@ const reducers = combineReducers({
   navigationBar: navigationBarReducer,
   viewAllPolls: viewAllPollsReducer,
   webSocket: webSocketReducer,
+  register: registrationFormReducer,
 });
 const store = createStore(reducers, applyMiddleware(thunk));
 
