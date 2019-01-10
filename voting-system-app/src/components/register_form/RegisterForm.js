@@ -22,14 +22,9 @@ function RegisterForm(props) {
     var emailRegex = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
     var passRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
     var phoneRegex = new RegExp(/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g);
-    var email = props.register.emailid;
-    // var pass = props.register.password;
-    var name = props.register.username;
+    var email = props.register.email;
     if(emptyRegex.test(email) || email === ""){
       swal("Email field can't be empty");
-    }
-    else if(emptyRegex.test(name) || name === ""){
-      swal("Name field can't be empty");
     }
     else if(!emailRegex.test(email))
     {

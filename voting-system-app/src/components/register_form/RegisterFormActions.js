@@ -1,24 +1,24 @@
 import SockJS from "sockjs-client";
 import {Stomp} from "stompjs/lib/stomp";
 import $ from 'jquery';
+import swal from 'sweetalert';
 import {basePath} from "../../HostAddress";
 export const registration = (form) => (dispatch, getState) => {
   const form = getState().register;
   $.ajax({
-    url: basePath + "/api/users",
+    url: basePath + "/voting-system/api/v1/basicUsers",
     type: "POST",
     contentType: "application/json",
     dataType: "json",
-    data: JSON.stringify({userName: form.username, email: form.emailid}),
+    data: JSON.stringify(form),
     success: function (resp) {
-      const socket = new SockJS(basePath + '/gs-guide-websocket');
-      let stompClient = Stomp.over(socket);
-      stompClient.connect({}, function (frame) {
-        // dispatch(profileSuccess(resp, stompClient));
-      });
+      localStorage.setItem("email", form.email);
+      swal("Your profile has been created. The website is constantly being enhanced. Please checkout for " +
+        "new enhancements associated with your profile");
+      dispatch(resetRegistrationForm())
     },
     error: function (err) {
-      error(err);
+      swal(err);
     }
   });
 };
@@ -46,5 +46,11 @@ export const updateRegisterForm = (data) => (dispatch) => {
   });
 };
 
+export const RESET_REGISTER_FORM = 'RESET_REGISTER_FORM';
+export const resetRegistrationForm = () => (dispatch) => {
+  dispatch({
+    type: RESET_REGISTER_FORM,
+  });
+};
 
 

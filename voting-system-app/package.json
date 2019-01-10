@@ -19,6 +19,7 @@
     "react-sweet-progress": "^1.1.2",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "serve": "^10.1.1",
     "sockjs-client": "1.1.4",
     "stompjs": "2.3.3",
     "sweetalert": "2.1.0"
