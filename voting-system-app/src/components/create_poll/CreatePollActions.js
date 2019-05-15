@@ -18,7 +18,6 @@ export const setPollId = (id) => (dispatch) => {
   })
 };
 
-
 export const QUESTION_CHANGE = 'QUESTION_CHANGE';
 export const onQuestionChange = ({ target }) => (dispatch) => {
   dispatch({
@@ -27,6 +26,14 @@ export const onQuestionChange = ({ target }) => (dispatch) => {
   });
 };
 
+
+export const IP_RESTRICTION = 'ip_restriction';
+export const ipRestrictionChange = ({ checked }) => (dispatch) => {
+  dispatch({
+    type: IP_RESTRICTION,
+    ip_restriction: checked,
+  });
+};
 
 export const SHOW_LINK = 'SHOW_LINK';
 export const showLink = () => (dispatch) => {
